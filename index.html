@@ -53,6 +53,11 @@
       overflow: hidden;
     }
 
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
     .hero::after {
       content: "";
       position: absolute;
@@ -63,6 +68,7 @@
       border-radius: 50%;
       background: rgba(255,255,255,0.38);
       filter: blur(2px);
+      pointer-events: none;
     }
 
     h1 {
@@ -298,8 +304,8 @@
   <div class="wrap">
     <section class="hero">
       <h1>4-Day Women’s Gym Plan</h1>
-      <div class="hero-script">My Workout Plan</div>
-      <p class="sub">Workout plan for a toned, hourglass-focused physique with priority on glutes, shoulders, arms, and core.</p>
+      <div class="hero-script">soft &amp; simple</div>
+      <p class="sub">Mobile-friendly workout plan for a toned, hourglass-focused physique with priority on glutes, shoulders, arms, and core.</p>
       <div class="quick-nav">
         <a href="#rules">Rules</a>
         <a href="#day1">Day 1</a>
