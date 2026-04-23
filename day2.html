@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Gym Plan — Day 2</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Gym Plan" />
+  <meta name="theme-color" content="#f6f2eb" />
+  <link rel="apple-touch-icon" href="icon-180.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
+  <link rel="icon" type="image/png" href="icon-180.png" />
+  <style>
+    :root {
+      --bg: #f6f2eb;
+      --card: #fbf8f3;
+      --text: #66594d;
+      --muted: #a49789;
+      --line: #e7ddd0;
+      --chip: #efe5d8;
+      --chip-text: #7a6a5b;
+      --accent-soft: #f2ebe2;
+      --video-bg: #ede3d6;
+      --video-border: #dccdbc;
+      --video-text: #7c6b5e;
+      --shadow: 0 12px 30px rgba(164, 149, 132, 0.10);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.55), transparent 28%),
+        linear-gradient(180deg, #f7f3ed 0%, #f2ece3 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: env(safe-area-inset-top) 16px calc(92px + env(safe-area-inset-bottom));
+    }
+
+    .hero {
+      background: linear-gradient(180deg, #fbf8f3 0%, #f1e8dc 100%);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 22px 18px;
+      box-shadow: var(--shadow);
+      margin: 12px 0 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -32px;
+      bottom: -38px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.38);
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.55rem;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #5c5045;
+    }
+
+    .hero-script {
+      margin-top: 8px;
+      font-size: 1.5rem;
+      color: #c8b8a6;
+      font-family: "Snell Roundhand", "Apple Chancery", "Brush Script MT", cursive;
+      line-height: 1;
+    }
+
+    .sub {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 34rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      background: var(--chip);
+      color: var(--chip-text);
+      border: 1px solid #e2d6c8;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
+    }
+
+    .section {
+      margin-top: 18px;
+    }
+
+    .section-title {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      margin: 0 0 8px;
+      padding: 12px 6px 10px;
+      background: rgba(246, 242, 235, 0.95);
+      backdrop-filter: blur(10px);
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #5c5045;
+    }
+
+    .day-sub {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin: 0 0 12px;
+    }
+
+    .exercise-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #fcfaf6 0%, #f8f2ea 100%);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 96px;
+      height: 96px;
+      border-bottom-left-radius: 100%;
+      background: rgba(255,255,255,0.28);
+    }
+
+    .card h3 {
+      position: relative;
+      margin: 0 0 12px;
+      font-size: 1.08rem;
+      line-height: 1.25;
+      color: #5c5045;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .block + .block { margin-top: 12px; }
+
+    .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #aa9a8b;
+      margin-bottom: 5px;
+      font-weight: 800;
+    }
+
+    .block p {
+      margin: 0;
+      font-size: 0.97rem;
+      color: #66594d;
+    }
+
+    .video-row {
+      margin-top: 14px;
+      position: relative;
+    }
+
+    .video-link, .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      background: var(--video-bg);
+      color: var(--video-text);
+      border: 1px solid var(--video-border);
+      border-radius: 999px;
+      padding: 11px 15px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      min-height: 44px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
+    }
+
+    .video-link:active,
+    .video-link:hover,
+    .nav-btn:active,
+    .nav-btn:hover {
+      filter: brightness(0.98);
+    }
+
+    .note {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: var(--accent-soft);
+      font-size: 0.92rem;
+      color: #6b5d50;
+    }
+
+    .nav-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: calc(12px + env(safe-area-inset-bottom));
+      width: min(94%, 760px);
+      background: rgba(251, 248, 243, 0.92);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      z-index: 20;
+    }
+
+    .bottom-nav a {
+      text-decoration: none;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 10px 6px;
+      border-radius: 16px;
+    }
+
+    .bottom-nav a.active {
+      background: var(--chip);
+      color: #6c5d50;
+    }
+
+    @media (min-width: 640px) {
+      .bottom-nav {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Day 2 — Back + Shoulders + Core</h1>
+      <div class="hero-script">shape the frame</div>
+      <p class="sub">Goal: build upper-body shape to enhance the waist-to-shoulder ratio. Focus on posture, lat width, shoulder shape, and core control rather than rushing heavy weights.</p>
+      <div class="chip-row">
+        <span class="chip">10 exercises + cardio</span>
+        <span class="chip">Upper body shape</span>
+        <span class="chip">75–100 min</span>
+      </div>
+      <div class="nav-row">
+        <a class="nav-btn" href="day1.html">Back: Day 1</a>
+        <a class="nav-btn" href="day3.html">Next: Day 3</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Workout Cards</div>
+      <div class="day-sub">Use clean, controlled reps. Most sets should finish with 1–2 reps left in reserve, especially on shoulder work and core movements.</div>
+      <div class="exercise-list">
+        <article class="card">
+          <h3>Lat Pulldown</h3>
+          <div class="meta"><span class="chip">4 sets</span><span class="chip">10–12 reps</span><span class="chip">75–90 sec rest</span></div>
+          <div class="block"><div class="label">Cues</div><p>Pull elbows down, keep chest up, and avoid swinging.</p></div>
+          <div class="block"><div class="label">Progression</div><p>When all sets hit 12 clean reps, increase weight.</p></div>
+          <div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=lat+pulldown+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div>
+        </article>
+
+        <article class="card">
+          <h3>Seated Cable Row</h3>
+          <div class="meta"><span class="chip">3 sets</span><span class="chip">10–12 reps</span><span class="chip">75 sec rest</span></div>
+          <div class="block"><div class="label">Cues</div><p>Squeeze the shoulder blades together, keep the torso stable, and control the return.</p></div>
+          <div class="block"><div class="label">Progression</div><p>Add reps first, then load.</p></div>
+          <div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=seated+cable+row+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div>
+        </article>
+
+        <article class="card">
+          <h3>Single-Arm Dumbbell Row</h3>
+          <div class="meta"><span class="chip">3 sets</span><span class="chip">10 each side</span><span class="chip">60–75 sec rest</span></div>
+          <div class="block"><div class="label">Cues</div><p>Pull toward the hip, control the lowering, and avoid twisting the torso.</p></div>
+          <div class="block"><div class="label">Progression</div><p>Increase reps or dumbbell size gradually.</p></div>
+          <div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=single+arm+dumbbell+row+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div>
+        </article>
+
+        <article class="card">
+          <h3>Dumbbell Shoulder Press</h3>
+          <div class="meta"><span class="chip">3 sets</span><span class="chip">10–12 reps</span><span class="chip">75–90 sec rest</span></div>
+          <div class="block"><div class="label">Cues</div><p>Press smoothly, avoid excessive lower-back arch, and stay in control.</p></div>
+          <div class="block"><div class="label">Progression</div><p>Use small jumps in weight when reps are solid.</p></div>
+          <div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div>
+        </article>
+
+        <article class="card">
+          <h3>Lateral Raise</h3>
+          <div class="meta"><span class="chip">4 sets</span><span class="chip">12–20 reps</span><span class="chip">45–60 sec rest</span></div>
+          <div class="block"><div class="label">Cues</div><p>Keep a slight bend in the elbows, avoid swinging, and chase tension over heavy weight.</p></div>
+          <div class="block"><div class="label">Progression</div><p>Reach the top of the rep range before increasing the load.</p></div>
+          <div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=lateral+raise+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div>
+        </article>
+
+        <article class="card">
+          <h3>Rear Delt Fly / Reverse Pec Deck</h3>
+          <div class="meta"><span class="chip">3 sets</span><span class="chip">12–15 reps</span><span class="chip">45–60 sec rest</span></div>
+          <div class="block"><div class="label">Cues</div><p>Focus on the rear delts and avoid shrugging into the traps.</p></div>
+          <div class="block"><div class="label">Progression</div><p>Add reps first, then load.</p></div>
+          <div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=rear+delt+fly+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div>
+        </article>
+
+        <article class="card">
+          <h3>Face Pull</h3>
+          <div class="meta"><span class="chip">3 sets</span><span class="chip">12–15 reps</span><span class="chip">45–60 sec rest</span></div>
+          <div class="block"><div class="label">Cues</div><p>Pull toward the upper face, keep elbows high, and pause briefly at the end.</p></div>
+          <div class="block"><div class="label">Progression</div><p>Reach 15 clean reps, then increase the weight.</p></div>
+          <div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=face+pull+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div>
+        </article>
+
+        <article class="card">
+          <h3>Cable Crunch</h3>
+          <div class="meta"><span class="chip">3 sets</span><span class="chip">12–15 reps</span><span class="chip">45 sec rest</span></div>
+          <div class="block"><div class="label">Cues</div><p>Curl the spine down, exhale hard, and do not just hinge at the hips.</p></div>
+          <div class="block"><div class="label">Progression</div><p>Increase weight only when control stays strict.</p></div>
+          <div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=cable+crunch+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div>
+        </article>
+
+        <article class="card">
+          <h3>Dead Bug or Hollow Hold</h3>
+          <div class="meta"><span class="chip">3 sets</span><span class="chip">8–12 each side or 20–30 sec</span><span class="chip">30–45 sec rest</span></div>
+          <div class="block"><div class="label">Cues</div><p>Keep the core braced and the lower back controlled the entire time.</p></div>
+          <div class="block"><div class="label">Progression</div><p>Improve control first, then increase reps or hold time.</p></div>
+          <div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=dead+bug+exercise+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div>
+        </article>
+
+        <article class="card">
+          <h3>Side Plank</h3>
+          <div class="meta"><span class="chip">2–3 sets</span><span class="chip">20–40 sec each side</span><span class="chip">30 sec rest</span></div>
+          <div class="block"><div class="label">Cues</div><p>Keep hips stacked, body straight, and avoid sagging.</p></div>
+          <div class="block"><div class="label">Progression</div><p>Increase hold time gradually.</p></div>
+          <div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=side+plank+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div>
+        </article>
+
+        <article class="card">
+          <h3>Cardio — Incline Walk or Moderate Stairmaster</h3>
+          <div class="meta"><span class="chip">1 round</span><span class="chip">15–20 min</span><span class="chip">Moderate pace</span></div>
+          <div class="block"><div class="label">Cues</div><p>Keep it controlled, not all-out, so recovery stays on track.</p></div>
+          <div class="block"><div class="label">Progression</div><p>Increase time only if the legs still recover well.</p></div>
+          <div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=stairmaster+form+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div>
+        </article>
+      </div>
+
+      <div class="note">Tip: this day creates the upper-body frame that makes the waist look smaller. Be strict with lateral raises, rear delts, and core control instead of using momentum.</div>
+    </section>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="index.html">Home</a>
+    <a href="day1.html">Day 1</a>
+    <a class="active" href="day2.html">Day 2</a>
+    <a href="day3.html">Day 3</a>
+    <a href="day4.html">Day 4</a>
+    <a href="progress.html">Progress</a>
+  </nav>
+</body>
+</html>

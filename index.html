@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>4-Day Women’s Gym Plan</title>
+  <title>Gym Plan — Home</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Gym Plan" />
+  <meta name="theme-color" content="#f6f2eb" />
+  <link rel="apple-touch-icon" href="icon-180.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png" />
+  <link rel="icon" type="image/png" href="icon-180.png" />
   <style>
     :root {
       --bg: #f6f2eb;
@@ -16,9 +23,9 @@
       --chip-text: #7a6a5b;
       --accent: #b8a999;
       --accent-soft: #f2ebe2;
-      --video-bg: #ede3d6;
-      --video-border: #dccdbc;
-      --video-text: #7c6b5e;
+      --button: #ede3d6;
+      --button-border: #dccdbc;
+      --button-text: #7c6b5e;
       --shadow: 0 12px 30px rgba(164, 149, 132, 0.10);
       --radius: 24px;
     }
@@ -39,7 +46,7 @@
     .wrap {
       max-width: 860px;
       margin: 0 auto;
-      padding: env(safe-area-inset-top) 16px calc(30px + env(safe-area-inset-bottom));
+      padding: env(safe-area-inset-top) 16px calc(92px + env(safe-area-inset-bottom));
     }
 
     .hero {
@@ -73,7 +80,7 @@
 
     h1 {
       margin: 0;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       line-height: 1.15;
       letter-spacing: -0.02em;
       color: #5c5045;
@@ -94,27 +101,7 @@
       max-width: 34rem;
     }
 
-    .quick-nav {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .quick-nav a {
-      text-decoration: none;
-      text-align: center;
-      color: #7d6d5f;
-      background: rgba(255,255,255,0.55);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 11px 10px;
-      font-size: 0.86rem;
-      font-weight: 700;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
-    }
-
-    .section-card {
+    .section {
       background: linear-gradient(180deg, #fbf8f3 0%, #f9f5ef 100%);
       border: 1px solid var(--line);
       border-radius: 26px;
@@ -123,99 +110,90 @@
       margin: 14px 0;
     }
 
-    .section-title {
+    .section h2 {
       margin: 0 0 12px;
       font-size: 1rem;
       font-weight: 800;
       color: #695b4f;
     }
 
-    .rules-grid,
-    .progress-grid {
+    .grid {
       display: grid;
       gap: 12px;
     }
 
-    .rule,
-    .progress-box {
+    .small-card {
       border: 1px solid var(--line);
       border-radius: 20px;
       background: #fcfaf6;
-      padding: 13px 14px;
+      padding: 14px;
       box-shadow: 0 6px 18px rgba(164,149,132,0.05);
     }
 
-    .rule strong,
-    .progress-box strong {
+    .small-card h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      color: #5f5348;
+    }
+
+    .small-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .rules {
+      display: grid;
+      gap: 10px;
+    }
+
+    .rule {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fcfaf6;
+      padding: 12px 13px;
+    }
+
+    .rule strong {
       display: block;
       margin-bottom: 4px;
-      font-size: 0.93rem;
       color: #695b4f;
+      font-size: 0.92rem;
     }
 
-    .day {
-      margin-top: 22px;
+    .split-list {
+      display: grid;
+      gap: 12px;
     }
 
-    .day-title {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      margin: 0 0 8px;
-      padding: 12px 6px 10px;
-      background: rgba(246, 242, 235, 0.95);
-      backdrop-filter: blur(10px);
-      font-size: 1.08rem;
+    .split-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fcfaf6 0%, #f8f2ea 100%);
+      padding: 15px;
+      box-shadow: var(--shadow);
+    }
+
+    .split-link-title {
+      font-size: 1rem;
       font-weight: 800;
       color: #5c5045;
+      margin-bottom: 4px;
     }
 
-    .day-sub {
+    .split-link-desc {
       color: var(--muted);
-      font-size: 0.92rem;
-      margin: 0 0 12px;
+      font-size: 0.93rem;
     }
 
-    .exercise-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .card {
-      background: linear-gradient(180deg, #fcfaf6 0%, #f8f2ea 100%);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 16px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 96px;
-      height: 96px;
-      border-bottom-left-radius: 100%;
-      background: rgba(255,255,255,0.28);
-    }
-
-    .card h3 {
-      position: relative;
-      margin: 0 0 12px;
-      font-size: 1.08rem;
-      line-height: 1.25;
-      color: #5c5045;
-    }
-
-    .meta {
+    .chip-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 12px;
-      position: relative;
+      margin-top: 10px;
     }
 
     .chip {
@@ -224,53 +202,34 @@
       border: 1px solid #e2d6c8;
       border-radius: 999px;
       padding: 8px 12px;
-      font-size: 0.83rem;
+      font-size: 0.82rem;
       font-weight: 700;
       white-space: nowrap;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
     }
 
-    .block + .block { margin-top: 12px; }
-
-    .label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #aa9a8b;
-      margin-bottom: 5px;
-      font-weight: 800;
-    }
-
-    .block p {
-      margin: 0;
-      font-size: 0.97rem;
-      color: #66594d;
-    }
-
-    .video-row {
+    .cta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
       margin-top: 14px;
-      position: relative;
     }
 
-    .video-link {
+    .btn {
       display: inline-flex;
+      justify-content: center;
       align-items: center;
-      gap: 8px;
+      text-align: center;
       text-decoration: none;
-      background: var(--video-bg);
-      color: var(--video-text);
-      border: 1px solid var(--video-border);
-      border-radius: 999px;
-      padding: 11px 15px;
-      font-size: 0.9rem;
+      background: var(--button);
+      color: var(--button-text);
+      border: 1px solid var(--button-border);
+      border-radius: 18px;
+      padding: 12px 14px;
+      font-size: 0.92rem;
       font-weight: 700;
-      min-height: 44px;
+      min-height: 46px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
-    }
-
-    .video-link:active,
-    .video-link:hover {
-      filter: brightness(0.98);
     }
 
     .note {
@@ -282,20 +241,50 @@
       color: #6b5d50;
     }
 
-    .footer-note {
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: calc(12px + env(safe-area-inset-bottom));
+      width: min(94%, 760px);
+      background: rgba(251, 248, 243, 0.92);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      z-index: 20;
+    }
+
+    .bottom-nav a {
+      text-decoration: none;
+      text-align: center;
       color: var(--muted);
-      font-size: 0.92rem;
-      margin-top: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 10px 6px;
+      border-radius: 16px;
+    }
+
+    .bottom-nav a.active {
+      background: var(--chip);
+      color: #6c5d50;
+    }
+
+    @media (min-width: 640px) {
+      .bottom-nav {
+        grid-template-columns: repeat(6, 1fr);
+      }
     }
 
     @media (min-width: 720px) {
-      .rules-grid,
-      .progress-grid {
+      .grid,
+      .rules,
+      .split-list {
         grid-template-columns: 1fr 1fr;
-      }
-
-      .quick-nav {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
       }
     }
   </style>
@@ -303,110 +292,83 @@
 <body>
   <div class="wrap">
     <section class="hero">
-      <h1>4-Day Women’s Gym Plan</h1>
+      <h1>Gym Plan</h1>
       <div class="hero-script">soft &amp; simple</div>
-      <p class="sub">Mobile-friendly workout plan for a toned, hourglass-focused physique with priority on glutes, shoulders, arms, and core.</p>
-      <div class="quick-nav">
-        <a href="#rules">Rules</a>
-        <a href="#day1">Day 1</a>
-        <a href="#day2">Day 2</a>
-        <a href="#day3">Day 3</a>
-        <a href="#day4">Day 4</a>
-        <a href="#progress">Progression</a>
+      <p class="sub">Welcome page for your 4-day women’s gym split. Tap into each day for the full exercise cards and demo links.</p>
+      <div class="chip-row">
+        <span class="chip">4 days / week</span>
+        <span class="chip">Beginner friendly</span>
+        <span class="chip">Glutes + arms + core</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn" href="day1.html">Start Day 1</a>
+        <a class="btn" href="progress.html">View Progression</a>
       </div>
     </section>
 
-    <section class="section-card" id="rules">
-      <h2 class="section-title">Global Training Rules</h2>
-      <div class="rules-grid">
+    <section class="section">
+      <h2>Weekly Split</h2>
+      <div class="split-list">
+        <a class="split-link" href="day1.html">
+          <div class="split-link-title">Day 1 — Glutes + Hamstrings</div>
+          <div class="split-link-desc">Glute growth focus while keeping quad growth moderate.</div>
+        </a>
+        <a class="split-link" href="day2.html">
+          <div class="split-link-title">Day 2 — Back + Shoulders + Core</div>
+          <div class="split-link-desc">Build upper-body shape to enhance the hourglass look.</div>
+        </a>
+        <a class="split-link" href="day3.html">
+          <div class="split-link-title">Day 3 — Glutes + Arms</div>
+          <div class="split-link-desc">Second glute-focused day plus arm definition work.</div>
+        </a>
+        <a class="split-link" href="day4.html">
+          <div class="split-link-title">Day 4 — Upper Body Shape + Core + Cardio</div>
+          <div class="split-link-desc">Polish shoulders, back, arms, core, and conditioning.</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Training Rules</h2>
+      <div class="rules">
         <div class="rule"><strong>Main lifts</strong>Use 3–4 sets of 8–12 reps with 90–120 seconds rest.</div>
         <div class="rule"><strong>Isolation lifts</strong>Use 3 sets of 12–20 reps with 45–75 seconds rest.</div>
         <div class="rule"><strong>Effort target</strong>Finish most sets with 1–2 reps left in reserve.</div>
         <div class="rule"><strong>Progressive overload</strong>When all sets reach the top of the rep range with good form, increase the weight next session.</div>
-        <div class="rule"><strong>Tempo</strong>Lower slowly for about 2–3 seconds, lift with control, and pause where noted.</div>
-        <div class="rule"><strong>Warm-up</strong>Do 5–8 minutes of light cardio, mobility, and 1–2 lighter warm-up sets before the first big lifts.</div>
       </div>
+      <div class="note">Each day page will keep the demo links inside every exercise card, so it stays easy to follow at the gym.</div>
     </section>
 
-    <section class="day" id="day1">
-      <div class="day-title">Day 1 — Glutes + Hamstrings</div>
-      <div class="day-sub">Goal: grow glutes while keeping quad growth moderate.</div>
-      <div class="exercise-list">
-        <article class="card"><h3>Barbell Hip Thrust</h3><div class="meta"><span class="chip">4 sets</span><span class="chip">8–12 reps</span><span class="chip">90–120 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Full lockout, pause 1 second at the top, keep ribs down, and control the lowering.</p></div><div class="block"><div class="label">Progression</div><p>When all 4 sets reach 12 clean reps, increase the weight.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=barbell+hip+thrust+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Romanian Deadlift</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">8–10 reps</span><span class="chip">90–120 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Slight knee bend, hinge hips back, keep a neutral spine, and lower slowly.</p></div><div class="block"><div class="label">Progression</div><p>Add reps first, then increase weight.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=romanian+deadlift+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Cable Glute Kickback</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">12–15 each side</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Do not swing, squeeze the glute at end range, and control the return.</p></div><div class="block"><div class="label">Progression</div><p>Reach 15 reps cleanly, then increase load.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=cable+glute+kickback+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>45° Back Extension, Glute-Focused</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">12–15 reps</span><span class="chip">60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Drive hips into the pad, squeeze glutes at the top, and move with control.</p></div><div class="block"><div class="label">Progression</div><p>Start with bodyweight, then add a plate when all sets feel strong.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=45+degree+back+extension+glute+focused+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Seated or Lying Leg Curl</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">10–12 reps</span><span class="chip">60–75 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Get a full squeeze, return slowly, and avoid jerking the weight.</p></div><div class="block"><div class="label">Progression</div><p>When all sets hit 12 reps with control, increase the weight.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=seated+leg+curl+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Hip Abduction Machine</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">15–20 reps</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Control both directions, avoid bouncing, and lean slightly forward if it helps you feel the glutes more.</p></div><div class="block"><div class="label">Progression</div><p>Add reps first, then increase the load.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=hip+abduction+machine+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Step-Back Lunges, Glute-Biased</h3><div class="meta"><span class="chip">2 sets</span><span class="chip">10 each side</span><span class="chip">60–75 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Take a longer step, keep a slight torso lean, and push through the heel.</p></div><div class="block"><div class="label">Progression</div><p>Progress slowly and keep the load moderate instead of chasing heavy weight.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=step+back+lunge+glute+biased+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Optional Cardio — Incline Walk</h3><div class="meta"><span class="chip">1 round</span><span class="chip">10–15 min</span><span class="chip">Easy to moderate</span></div><div class="block"><div class="label">Cues</div><p>Use a pace that supports recovery instead of exhausting the legs.</p></div><div class="block"><div class="label">Progression</div><p>Add a few minutes only if recovery stays good.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=incline+treadmill+walk+form" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
+    <section class="section">
+      <h2>Quick Overview</h2>
+      <div class="grid">
+        <div class="small-card">
+          <h3>Main Goal</h3>
+          <p>Toned, feminine shape with extra focus on glutes, shoulders, arms, and core.</p>
+        </div>
+        <div class="small-card">
+          <h3>Session Length</h3>
+          <p>Around 75–100 minutes including cardio, depending on rest time.</p>
+        </div>
+        <div class="small-card">
+          <h3>Cardio</h3>
+          <p>Included strategically to support conditioning and recovery without over-fatiguing legs.</p>
+        </div>
+        <div class="small-card">
+          <h3>Navigation</h3>
+          <p>Use the bottom navigation or the split cards above to move between pages.</p>
+        </div>
       </div>
-    </section>
-
-    <section class="day" id="day2">
-      <div class="day-title">Day 2 — Back + Shoulders + Core</div>
-      <div class="day-sub">Goal: build upper-body shape to enhance the waist-to-shoulder ratio.</div>
-      <div class="exercise-list">
-        <article class="card"><h3>Lat Pulldown</h3><div class="meta"><span class="chip">4 sets</span><span class="chip">10–12 reps</span><span class="chip">75–90 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Pull elbows down, keep chest up, and avoid swinging.</p></div><div class="block"><div class="label">Progression</div><p>When all sets hit 12 clean reps, increase weight.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=lat+pulldown+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Seated Cable Row</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">10–12 reps</span><span class="chip">75 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Squeeze the shoulder blades together, keep the torso stable, and control the return.</p></div><div class="block"><div class="label">Progression</div><p>Add reps first, then load.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=seated+cable+row+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Single-Arm Dumbbell Row</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">10 each side</span><span class="chip">60–75 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Pull toward the hip, control the lowering, and avoid twisting the torso.</p></div><div class="block"><div class="label">Progression</div><p>Increase reps or dumbbell size gradually.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=single+arm+dumbbell+row+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Dumbbell Shoulder Press</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">10–12 reps</span><span class="chip">75–90 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Press smoothly, avoid excessive lower-back arch, and stay in control.</p></div><div class="block"><div class="label">Progression</div><p>Use small jumps in weight when reps are solid.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Lateral Raise</h3><div class="meta"><span class="chip">4 sets</span><span class="chip">12–20 reps</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Keep a slight bend in the elbows, avoid swinging, and chase tension over heavy weight.</p></div><div class="block"><div class="label">Progression</div><p>Reach the top of the rep range before increasing the load.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=lateral+raise+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Rear Delt Fly / Reverse Pec Deck</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">12–15 reps</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Focus on the rear delts and avoid shrugging into the traps.</p></div><div class="block"><div class="label">Progression</div><p>Add reps first, then load.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=rear+delt+fly+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Face Pull</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">12–15 reps</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Pull toward the upper face, keep elbows high, and pause briefly at the end.</p></div><div class="block"><div class="label">Progression</div><p>Reach 15 clean reps, then increase the weight.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=face+pull+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Cable Crunch</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">12–15 reps</span><span class="chip">45 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Curl the spine down, exhale hard, and do not just hinge at the hips.</p></div><div class="block"><div class="label">Progression</div><p>Increase weight only when control stays strict.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=cable+crunch+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Dead Bug or Hollow Hold</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">8–12 each side or 20–30 sec</span><span class="chip">30–45 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Keep the core braced and the lower back controlled the entire time.</p></div><div class="block"><div class="label">Progression</div><p>Improve control first, then increase reps or hold time.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=dead+bug+exercise+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Side Plank</h3><div class="meta"><span class="chip">2–3 sets</span><span class="chip">20–40 sec each side</span><span class="chip">30 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Keep hips stacked, body straight, and avoid sagging.</p></div><div class="block"><div class="label">Progression</div><p>Increase hold time gradually.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=side+plank+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Cardio — Incline Walk or Moderate Stairmaster</h3><div class="meta"><span class="chip">1 round</span><span class="chip">15–20 min</span><span class="chip">Moderate pace</span></div><div class="block"><div class="label">Cues</div><p>Keep it controlled, not all-out, so recovery stays on track.</p></div><div class="block"><div class="label">Progression</div><p>Increase time only if the legs still recover well.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=stairmaster+form+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-      </div>
-    </section>
-
-    <section class="day" id="day3">
-      <div class="day-title">Day 3 — Glutes + Arms</div>
-      <div class="day-sub">Goal: second glute-focused day with extra arm definition work.</div>
-      <div class="exercise-list">
-        <article class="card"><h3>Smith Machine Glute Bridge or Hip Thrust</h3><div class="meta"><span class="chip">4 sets</span><span class="chip">10–12 reps</span><span class="chip">90 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Strong squeeze at the top, controlled lowering, and keep ribs down.</p></div><div class="block"><div class="label">Progression</div><p>When all sets hit 12 clean reps, increase weight.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=glute+bridge+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Bulgarian Split Squat, Glute-Biased</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">8–10 each side</span><span class="chip">75–90 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Take a longer step, lean slightly forward, and push through the heel to shift emphasis to the glutes.</p></div><div class="block"><div class="label">Progression</div><p>Progress slowly and prioritize clean form.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=bulgarian+split+squat+glute+biased+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Cable Pull-Through</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">12–15 reps</span><span class="chip">60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Hinge properly, squeeze glutes through the finish, and avoid hyperextending the back.</p></div><div class="block"><div class="label">Progression</div><p>Reach the top reps first, then increase load.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=cable+pull+through+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Hip Abduction Machine</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">15–20 reps</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Use a controlled tempo, full range, and no bouncing.</p></div><div class="block"><div class="label">Progression</div><p>Add reps first, then weight.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=hip+abduction+machine+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Rope Tricep Pushdown</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">12–15 reps</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Keep elbows fixed, fully extend, and separate the rope at the bottom.</p></div><div class="block"><div class="label">Progression</div><p>Increase load only when all reps stay strict.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=rope+tricep+pushdown+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Overhead Dumbbell Tricep Extension</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">10–12 reps</span><span class="chip">60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Stretch behind the head, extend fully, and do not rush the reps.</p></div><div class="block"><div class="label">Progression</div><p>Add reps first, then weight.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=overhead+dumbbell+tricep+extension+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Dumbbell Bicep Curl</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">12 reps</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>No swinging, lower fully, and lift with control.</p></div><div class="block"><div class="label">Progression</div><p>Increase weight when all sets are clean.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=dumbbell+bicep+curl+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Hammer Curl</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">12 reps</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Use a neutral grip, smooth reps, and full range of motion.</p></div><div class="block"><div class="label">Progression</div><p>Use small weight increases once form is solid.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=hammer+curl+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Reverse Crunch</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">15 reps</span><span class="chip">30–45 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Curl the pelvis up instead of just swinging the legs.</p></div><div class="block"><div class="label">Progression</div><p>Improve control first, then add reps if needed.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=reverse+crunch+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Vacuum Practice</h3><div class="meta"><span class="chip">3 rounds</span><span class="chip">15–20 sec</span><span class="chip">20–30 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Exhale, draw the belly inward gently, and keep posture tall.</p></div><div class="block"><div class="label">Progression</div><p>Increase hold time gradually.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=stomach+vacuum+exercise+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-      </div>
-    </section>
-
-    <section class="day" id="day4">
-      <div class="day-title">Day 4 — Upper Body Shape + Core + Cardio</div>
-      <div class="day-sub">Goal: polish shoulder, back, arm, and waist shape.</div>
-      <div class="exercise-list">
-        <article class="card"><h3>Assisted Pull-Up or Neutral Grip Pulldown</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">8–10 reps</span><span class="chip">75–90 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Use a controlled vertical pull, keep the chest up, and avoid swinging.</p></div><div class="block"><div class="label">Progression</div><p>Reduce assistance or increase load over time.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=assisted+pull+up+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Chest-Supported Row</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">10–12 reps</span><span class="chip">75 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Keep the chest planted, squeeze the upper back, and control the lowering.</p></div><div class="block"><div class="label">Progression</div><p>Add reps first, then weight.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=chest+supported+row+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Arnold Press or Machine Shoulder Press</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">10–12 reps</span><span class="chip">75–90 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Move smoothly, stay controlled, and do not rush the reps.</p></div><div class="block"><div class="label">Progression</div><p>Increase weight in small increments.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=arnold+press+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Lateral Raise</h3><div class="meta"><span class="chip">4 sets</span><span class="chip">15 reps</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Focus on shoulder tension and avoid using momentum.</p></div><div class="block"><div class="label">Progression</div><p>Build to 18–20 reps before increasing load.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=lateral+raise+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Rear Delt Fly</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">15 reps</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Use strict form, controlled squeeze, and avoid shrugging.</p></div><div class="block"><div class="label">Progression</div><p>Add reps or a small load increase only when form stays clean.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=rear+delt+fly+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Cable Tricep Pressdown</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">12–15 reps</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Keep elbows tucked, lock out fully, and lower under control.</p></div><div class="block"><div class="label">Progression</div><p>When 15 reps feel easy and strict, increase the weight.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=cable+tricep+pressdown+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Cable Curl or Dumbbell Curl</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">12–15 reps</span><span class="chip">45–60 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Use smooth reps, full range, and avoid swinging.</p></div><div class="block"><div class="label">Progression</div><p>Add weight gradually after the top reps are solid.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=cable+curl+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Hanging Knee Raise or Captain’s Chair Leg Raise</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">10–15 reps</span><span class="chip">45 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Lift with the abs, avoid swinging, and control the lowering.</p></div><div class="block"><div class="label">Progression</div><p>Reach the top reps before moving to a harder variation.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=hanging+knee+raise+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Pallof Press</h3><div class="meta"><span class="chip">3 sets</span><span class="chip">12 each side</span><span class="chip">30–45 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Keep the torso still, resist rotation, and brace the core hard.</p></div><div class="block"><div class="label">Progression</div><p>Increase cable tension slowly.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=pallof+press+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Plank</h3><div class="meta"><span class="chip">2 sets</span><span class="chip">30–45 sec</span><span class="chip">30 sec rest</span></div><div class="block"><div class="label">Cues</div><p>Keep ribs down, glutes tight, and spine neutral.</p></div><div class="block"><div class="label">Progression</div><p>Increase hold time gradually.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=plank+exercise+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-        <article class="card"><h3>Cardio — Incline Walk, Cycling, or Moderate Stairmaster</h3><div class="meta"><span class="chip">1 round</span><span class="chip">20–30 min</span><span class="chip">Sustainable pace</span></div><div class="block"><div class="label">Cues</div><p>Choose a pace that supports conditioning without hurting recovery.</p></div><div class="block"><div class="label">Progression</div><p>Add a few minutes only if recovery stays strong.</p></div><div class="video-row"><a class="video-link" href="https://www.youtube.com/results?search_query=stationary+bike+form+tutorial" target="_blank" rel="noopener noreferrer">▶ Watch short demo</a></div></article>
-      </div>
-    </section>
-
-    <section class="section-card" id="progress">
-      <h2 class="section-title">Simple Weekly Progression Rules</h2>
-      <div class="progress-grid">
-        <div class="progress-box"><strong>Stay in the target rep range</strong>Do not rush weight increases before the reps and form are stable.</div>
-        <div class="progress-box"><strong>Keep 1–2 reps in reserve</strong>Most sets should feel challenging but not like an absolute max effort.</div>
-        <div class="progress-box"><strong>Increase load only when earned</strong>Once all sets reach the top of the range with good form, move the weight up next time.</div>
-        <div class="progress-box"><strong>If form breaks</strong>Keep the same weight next session and clean up the technique first.</div>
-      </div>
-      <div class="note">Example: if Hip Thrust is 4 × 8–12, stay with the same load until all 4 sets reach 12 with strong form. Then increase the weight next session.</div>
-      <p class="footer-note">Typical weekly layout: Monday Day 1, Tuesday Day 2, Thursday Day 3, Saturday Day 4.</p>
     </section>
   </div>
+
+  <nav class="bottom-nav">
+    <a class="active" href="index.html">Home</a>
+    <a href="day1.html">Day 1</a>
+    <a href="day2.html">Day 2</a>
+    <a href="day3.html">Day 3</a>
+    <a href="day4.html">Day 4</a>
+    <a href="progress.html">Progress</a>
+  </nav>
 </body>
 </html>
